@@ -1,0 +1,113 @@
+<mvc:View
+    controllerName="sap.ui.demo.clienti.controller.detail"
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+
+    	<Page
+		id="employeePage"
+		title="Clienti | {invoice>Codice} {invoice>Descrizione}" 
+		showNavButton="true"
+		navButtonPress=".onNavBack"
+		class="sapUiResponsiveContentPadding">
+        <headerContent>
+	      <Button text="stampa" press="onPrint" type="Default" class="sapUiResponsiveContentPadding"></Button>
+        </headerContent>
+
+	    <ObjectHeader
+                icon="https://profile.duet.ac.bd/public/img/avatar.png"
+                iconDensityAware="false"
+                iconAlt="{invoice>Descrizione}"
+                imageShape="Circle"
+                responsive="true"
+                title="{invoice>Descrizione}"
+                intro="{invoice>Codice}"
+                class="sapUiResponsivePadding--header" >
+                    <ObjectAttribute title="Sap Codice" text="{invoice>SapCodice}" active="true" />
+                    <ObjectAttribute title="ID Cliente" id="idclienti" text="{invoice>IDCliente}"/>               
+	    </ObjectHeader>
+
+        <IconTabBar id="iconTabBar"
+                    expanded="{device>/isNoPhone}"
+                    class="sapUiNoContentPadding">
+            <items>
+                <IconTabFilter text="SUPPORTO PER AREA FUNZIONALE" key="info" >
+
+                        <Table
+                            id="productsTable2"
+                            inset="false"
+                            items="{
+                                path: 'invoice2>/d',
+                                sorter: {
+                                    path: 'Name'
+                                }
+                            }"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                                <columns>
+                                    <Column width="12rem">
+                                        <Text text="Area Funzionale"/>
+                                    </Column>
+                                    <Column	hAlign="End">
+                                        <Text text="Emai lList"/>
+                                    </Column>     
+                                </columns>
+                                <items>
+                                    <ColumnListItem  >
+                                        <cells>
+                                            <ObjectIdentifier text="{invoice2>AreaFunzionale}"/>
+                                            <ObjectIdentifier text="{invoice2>EmailList}"/> 									
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+			            </Table>
+
+                </IconTabFilter>
+                <IconTabFilter text="SEDI" key="statistics">        
+
+                        <Table
+                            id="productsTable3"
+                            inset="false"
+                            items="{
+                                path: 'invoice3>/d',
+                                sorter: {
+                                    path: 'Name'
+                                }
+                            }"
+                            class="sapFDynamicPageAlignContent"
+                            width="auto">
+                                <columns>
+                                    <Column width="20rem">
+                                        <Text text="Codice Sede"/>
+                                    </Column>
+                                    <Column	hAlign="12rem">
+                                        <Text text="Sede"/>
+                                    </Column>
+                                    <Column	hAlign="End">
+                                        <Text text="Km"/>
+                                    </Column>        
+                                </columns>
+                                <items>
+                                    <ColumnListItem  >
+                                        <cells>
+                                            <ObjectIdentifier text="{invoice3>CodiceSede}"/>
+                                            <ObjectIdentifier text="{invoice3>Sede}"/> 		
+                                            <ObjectIdentifier text="{invoice3>Km}"/> 								
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+			            </Table>
+
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+
+    
+
+	</Page>
+
+
+
+    
+</mvc:View>

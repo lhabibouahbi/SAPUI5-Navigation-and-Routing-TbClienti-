@@ -1,0 +1,98 @@
+{
+	"_version": "1.12.0",
+	"sap.app": {
+	  "id": "sap.ui.demo.clienti",
+	  "type": "application",
+	  "i18n": "i18n/i18n.properties",
+	  "title": "{{appTitle}}",
+	  "description": "{{appDescription}}",
+	  "applicationVersion": {
+		"version": "1.0.0"
+	  },
+	  "dataSources": {
+		  "invoiceRemote": {
+			  "uri": "https://services.odata.org/V2/Northwind/Northwind.svc/",
+			  "type": "OData",
+			  "settings": {
+				  "odataVersion": "2.0"
+			  }
+		  }
+	  }
+	},
+	"sap.ui": {
+	  "technology": "UI5",
+	  "deviceTypes": {
+		  "desktop": true,
+		  "tablet": true,
+		  "phone": true
+	  }
+	},
+	"sap.ui5": {
+	  "rootView": {
+		  "viewName": "sap.ui.demo.clienti.view.App",
+		  "type": "XML",
+		  "async": true,
+		  "id": "app"
+	  },
+	  "dependencies": {
+		"minUI5Version": "1.60",
+		"libs": {
+		  "sap.m": {}
+		}
+	  },
+	  "models": {
+		"i18n": {
+		  "type": "sap.ui.model.resource.ResourceModel",
+		  "settings": {
+			"bundleName": "sap.ui.demo.clienti.i18n.i18n",
+			"supportedLocales": [""],
+			"fallbackLocale": ""
+		  }
+		},
+		"invoice": {
+		  "type": "sap.ui.model.json.JSONModel",
+		  "uri": "clienti.json"
+		},
+		"invoice2": {
+			"type": "sap.ui.model.json.JSONModel",
+			"uri": "tblClientiAreeFunzionali.json"
+		  },
+		"invoice3": {
+			  "type": "sap.ui.model.json.JSONModel",
+			  "uri": "tblClientiSedi.json"
+			}
+	  },
+	  "routing": {
+		"config": {
+		  "routerClass": "sap.m.routing.Router",
+		  "viewType": "XML",
+		  "viewPath": "sap.ui.demo.clienti.view",
+		  "controlId": "app",
+		  "controlAggregation": "pages",
+		  "async": true
+		},
+		"routes": [
+		  {
+			"pattern": "",
+			"name": "overview",
+			"target": "overview"
+		  },
+		  {
+			"pattern": "detail/{invoicePath}",
+			"name": "detail",
+			"target": "detail"
+		  }
+		],
+		"targets": {
+		  "overview": {
+			"viewId": "overview",
+			"viewName": "overview"
+		  },
+		  "detail": {
+			"viewId": "detail",
+			"viewName": "Detail"
+		  }
+		}
+	  }
+	}
+  }
